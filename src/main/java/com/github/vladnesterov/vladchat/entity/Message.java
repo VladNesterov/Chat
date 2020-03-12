@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "message")
 public class Message {
 
     @Id
@@ -21,6 +22,17 @@ public class Message {
     @Column(name = "author", nullable = false)
     String author;
 
+    @Column(name = "targetUser", nullable = false)
+    String targetUser;
+
+    public String getTargetUser() {
+        return targetUser;
+    }
+
+    public void setTargetUser(final String targetUser) {
+        this.targetUser = targetUser;
+    }
+
     public String getAuthor() {
         return author;
     }
@@ -36,7 +48,6 @@ public class Message {
     public void setCreatedAt(final LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
-
 
     public Long getId() {
         return id;
