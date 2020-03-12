@@ -8,20 +8,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 @RestController
 public class ChatController {
 
     @Autowired
-    ChatServiceImpl chatService;
+    private ChatService chatService;
 
     @RequestMapping(value = "messages")
-    List<MessageDto> getListMessage(String author) {
-        return chatService.getMessages(author);
+    List<MessageDto> getListMessage(@Nullable String author, String targetUser) {
+        return chatService.getMessages(author, targetUser);
     }
 
     @RequestMapping(value = "send")
-    void setMessages(String message, String author) {
-        chatService.sendMessage(message, author);
+    void setMessages(String message, @Nullable String author, @Nullable String targetUser) {
+        chatService.sendMessage(message, author, targetUser);
     }
 
 }
